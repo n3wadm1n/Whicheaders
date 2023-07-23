@@ -6,4 +6,10 @@ Will bypass issues with SSL, status like 404, 403 ..., works with http and https
 
 You can choose to save or not to a file.
 
+### Need colored!
+
+`pip3 install colored`
+
+
+
 That's all folks!
