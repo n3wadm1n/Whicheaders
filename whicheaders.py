@@ -1,11 +1,14 @@
 #!/usr/bin/python3
 ####################
-################
+################ 2.0
 ### n3wadm1n #####
 ### Euribot  #####
 #####################
 
-import requests, urllib3, readline
+import argparse
+import requests
+import urllib3
+import readline
 from requests.exceptions import RequestException
 from colored import fg, attr
 
@@ -54,23 +57,36 @@ def check_headers(url):
         return output
 
 def main():
-    file_path = input("Enter the path of the file containing URLs: ")
-    result_file = input("Enter the output file name for the result (leave blank to not save): ")
+    parser = argparse.ArgumentParser(description='Check headers of URLs')
+    parser.add_argument('-f', '--file', help='Path to the file containing URLs')
+    parser.add_argument('-o', '--output', help='Output file name for the result (leave blank to not save)')
+    parser.add_argument('-u', '--url', help='Single URL to check')
 
-    result_all = ""
+    args = parser.parse_args()
 
-    with open(file_path, "r") as uurls:
-        for line in uurls:
-            url = line.strip()
-            output = check_headers(url)
+    if args.file or args.url:
+        result_all = ""
+        
+        if args.file:
+            with open(args.file, "r") as uurls:
+                for line in uurls:
+                    url = line.strip()
+                    output = check_headers(url)
+                    result_all += output
+
+        if args.url:
+            output = check_headers(args.url)
             result_all += output
 
-    if result_file:
-        with open(result_file, "w") as output:
-            output.write(result_all)
-        print("Output saved in this file:", result_file)
+        if args.output:
+            with open(args.output, "w") as output:
+                output.write(result_all)
+            print("Output saved in this file:", args.output)
+        else:
+            print(result_all)
+    
     else:
-        print(result_all)
+        print("Please provide either -f or -u option.")
 
 if __name__ == "__main__":
     main()
