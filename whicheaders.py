@@ -36,8 +36,6 @@ def check_headers(url):
             "Clear-Site-Data",
             "Cache-Control",
             "Feature-Policy",
-            "Expect-Ct",
-            "Public-Key-Pins",
             "Content-Security-Policy-Report-Only"
         ]
         present_headers = [header for header in required_headers if header in headers]
