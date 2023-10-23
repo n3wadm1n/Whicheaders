@@ -31,7 +31,14 @@ def check_headers(url):
             "Permissions-Policy",
             "Cross-Origin-Embedder-Policy",
             "Cross-Origin-Resource-Policy",
-            "Cross-Origin-Opener-Policy"
+            "Cross-Origin-Opener-Policy",
+            "X-Permitted-Cross-Domain-Policies",
+            "Clear-Site-Data",
+            "Cache-Control",
+            "Feature-Policy",
+            "Expect-Ct",
+            "Public-Key-Pins",
+            "Content-Security-Policy-Report-Only"
         ]
         present_headers = [header for header in required_headers if header in headers]
         missing_headers = [header for header in required_headers if header not in headers]
