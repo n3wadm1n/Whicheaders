@@ -37,6 +37,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 def check_headers(url):
     try:
         hders = {'User-Agent': rnd_u_ag}
+        headers = response.headers
         response = requests.get(url, headers=hders, timeout=5, verify=False)
         required_headers = [
             "X-XSS-Protection",
